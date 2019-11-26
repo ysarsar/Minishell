@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 02:03:50 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 03:17:29 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/26 04:49:54 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,20 @@ void    ft_env_cwd(t_env *envp)
     }
     cwd = getcwd(buff, PATH_MAX + 1);
     current->data = ft_strjoin("PWD=", cwd);
+}
+
+void    ft_prompt()
+{
+    char    *cwd;
+    char    buff[PATH_MAX];
+
+    cwd = getcwd(buff, PATH_MAX + 1);
+    ft_putstr("\033[1;36m");
+    ft_putchar('[');
+    ft_putstr(cwd);
+    ft_putchar(']');
+    ft_putstr("\033[0m");
+    ft_putstr("\033[1;34m");
+    ft_putstr(" $> ");
+    ft_putstr("\033[0m");
 }

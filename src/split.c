@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:44:58 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 03:17:46 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/26 05:26:40 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*space(char *str)
 	return (s);
 }
 
-char	**split_shell(char *str)
+char	**split_shell(char *str, t_env *envp)
 {
 	char	*tmp;
 	char	**arr;
@@ -102,6 +102,7 @@ char	**split_shell(char *str)
 	i = -1;
 	while (arr[++i])
 		arr[i] = space(arr[i]);
+	arr = ft_expantions(arr, envp);
 	free(tmp);
 	return (arr);
 }

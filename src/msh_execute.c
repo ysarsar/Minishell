@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:41:39 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 04:14:59 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/26 05:49:51 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int		msh_execute(char **args, t_env *envp, char **tab)
 {
-	char *path;
+	char	*path;
+	int		i;
 
 	path = valide_path(args, envp);
-	if (check_builtins(args, envp, path))
+	if ((i = check_builtins(args, envp, path)))
 	{
+		if (i == 2)
+			return (0);
 		return (1);
 	}
 	else if (args[0][0] == '/' || args[0][0] == '.')
@@ -60,7 +63,12 @@ int		check_builtins(char **args, t_env *envp, char *path)
 		return (1);
 	}
 	else if (ft_strcmp(args[0], "exit") == 0)
-		exit(0);
+		return(2);
+	else if (ft_strcmp(args[0], "echo") == 0)
+	{
+		ft_echo(args);
+		return (1);
+	}
 	return (0);
 }
 
@@ -71,7 +79,7 @@ char	*ft_search_env(char *str, t_env *envp)
 	current = envp;
 	while (current)
 	{
-		if (ft_strncmp(str, current->data, ft_datalen(current->data)) == 0)
+		if (ft_strncmp(current->data, str, ft_strlen(str)) == 0)
 			return (&(current->data[ft_datalen(current->data) + 2]));
 		current = current->next;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:00:39 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 03:17:37 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/26 04:58:29 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ int     main(int ac, char **av, char **env)
     envp = my_getenv(env);
     msh_loop(envp);
     free_list(envp);
+    exit(0);
     return (0);
 }
-
-
-
 
 t_env   *my_getenv(char **env)
 {

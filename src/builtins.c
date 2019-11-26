@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:47:55 by root              #+#    #+#             */
-/*   Updated: 2019/11/25 05:14:33 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/26 03:54:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,19 @@ void	ft_cd(char **args, char *home, t_env *envp)
 		ft_env_owd(cwd, envp);
 		ft_env_cwd(envp);
 	}
+}
+
+void	ft_echo(char **args)
+{
+	int		i;
+
+	i = 1;
+	while (args[i])
+	{
+		ft_putstr(args[i]);
+		if (args[i + 1] != NULL)
+			ft_putchar(' ');
+		i++;
+	}
+	ft_putchar('\n');
 }
