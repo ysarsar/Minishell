@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_change_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:31:42 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/26 05:55:42 by root             ###   ########.fr       */
+/*   Updated: 2019/11/26 16:48:30 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char    **ft_expantions(char **args, t_env *envp)
             tmp = ft_strdup(args[i] + 1);
             args[i] = ft_strjoin(key, tmp);
         }
-        else if (ft_is_there(args[i], '$'))
+        if (ft_is_there(args[i], '$'))
         {
             if ((var = ft_var_name(args[i])) == NULL)
                 break ;

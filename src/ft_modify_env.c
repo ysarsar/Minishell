@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 21:46:18 by root              #+#    #+#             */
-/*   Updated: 2019/11/25 03:48:41 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/26 16:44:48 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void    ft_modify_env(t_env *envp, char **args, int count)
         var = ft_strcat(args[1], "=");
     while (current)
     {
-        if (ft_strncmp(args[1], current->data, ft_datalen(envp->data)) == 0)
+        if (ft_strncmp(current->data, args[1], ft_datalen(current->data)) == 0)
         {
             current->data = ft_strdup(var);
             c++;
