@@ -39,7 +39,7 @@ void	msh_loop(t_env *envp)
 	while (status)
 	{
 		ft_prompt();
-		if ((line = msh_read_line()) != NULL)
+		if ((line = msh_read_line()) != NULL && line[0] != '\0')
 		{
 			if ((args = split_shell(line, envp)) != NULL && args[0] != NULL)
 			{

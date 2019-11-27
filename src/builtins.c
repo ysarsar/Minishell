@@ -107,13 +107,15 @@ void	ft_cd(char **args, char *home, t_env *envp)
 			}
 			else
 			{
-				if (args[1][0] == '/' && args[1][1] == '\0')
+				if (args[1][0] == '/')
 					{
-						chdir("/");
+						chdir(args[1]);
+						ft_env_owd(cwd, envp);
+						ft_env_cwd(envp);
 						return ;
 					}
-				else if (ft_strncmp(args[1], "/", 1) == 0)
-					chdir(args[1]);
+				/*else if (ft_strncmp(args[1], "/", 1) == 0)
+					chdir(args[1]);*/
 				else
 				{
 					var = ft_changedir(args[1], cwd);
