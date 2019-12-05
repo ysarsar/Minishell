@@ -6,13 +6,13 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:31:42 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/26 16:48:30 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/30 05:52:51 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char    **ft_expantions(char **args, t_env *envp)
+char    ** ft_expantions(char **args, t_env *envp)
 {
     int     i;
     char    *var;
@@ -26,7 +26,9 @@ char    **ft_expantions(char **args, t_env *envp)
         {
             key = ft_search_env("HOME", envp);
             tmp = ft_strdup(args[i] + 1);
+            free(args[i]);
             args[i] = ft_strjoin(key, tmp);
+            ft_strdel(&tmp);
         }
         if (ft_is_there(args[i], '$'))
         {
@@ -37,11 +39,14 @@ char    **ft_expantions(char **args, t_env *envp)
             {
                 ft_putstr(var);
                 ft_putendl(": Undefined variable.");
+                free(var);
                 return (NULL);
             }
             tmp = ft_change_arg(key, args[i], var);
             ft_strdel(&args[i]);
             args[i] = ft_strdup(tmp);
+            ft_strdel(&tmp);
+            ft_strdel(&var);
         }
         i++;
     }
@@ -89,7 +94,6 @@ char    *ft_change_arg(char *key, char *str, char *var)
     int     j;
     int     k;
     char    tmp[1024];
-    char    *arg;
 
     i = -1;
     j = -1;
@@ -109,6 +113,5 @@ char    *ft_change_arg(char *key, char *str, char *var)
         i++;
     }
     tmp[i] = '\0';
-    arg = ft_strdup(tmp);
-    return (arg);
+    return (ft_strdup(tmp));
 }

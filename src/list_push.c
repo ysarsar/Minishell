@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 03:00:32 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 03:17:34 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/11/27 21:04:56 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void    listpush(char *var, t_env **envp)
     if (*envp == NULL)
     {
         *envp = new_node;
-        return;
+        return ;
     }
     while (last->next != NULL)
     {
         last = last->next;
     }
     last->next = new_node;
-    return;
+    return ;
 }

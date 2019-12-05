@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_loop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:09:05 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/26 05:13:06 by root             ###   ########.fr       */
+/*   Updated: 2019/12/05 21:31:09 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_args(char **args)
 		i = 0;
 		while (args[i])
 		{
-			ft_strdel(&args[i]);
+				ft_strdel(&args[i]);
 			i++;
 		}
 		free(args);
@@ -48,7 +48,7 @@ void	msh_loop(t_env *envp)
 				free_args(tab);
 			}
 			free_args(args);
-			ft_strdel(&line);
+			//ft_strdel(&line);
 		}
 	}
 }

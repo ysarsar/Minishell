@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:47:55 by root              #+#    #+#             */
-/*   Updated: 2019/11/26 03:54:15 by root             ###   ########.fr       */
+/*   Updated: 2019/12/01 18:35:08 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_cd(char **args, char *home, t_env *envp)
 	int		i;
 	char	*var;
 	char	*cwd;
+	char	*str;
 	char	buff[PATH_MAX +1];
 
 	i = ft_argslen(args);
@@ -102,30 +103,31 @@ void	ft_cd(char **args, char *home, t_env *envp)
 				var = ft_search_env("OLDPWD", envp);
 				chdir(var);
 				ft_env_owd(cwd, envp);
-				ft_env_cwd(envp);
+				str = ft_env_cwd(envp);
 				return ;
 			}
 			else
 			{
 				if (args[1][0] == '/')
-					{
+				{
 						chdir(args[1]);
 						ft_env_owd(cwd, envp);
-						ft_env_cwd(envp);
+						str = ft_env_cwd(envp);
 						return ;
-					}
-				/*else if (ft_strncmp(args[1], "/", 1) == 0)
-					chdir(args[1]);*/
+				}
 				else
 				{
-					var = ft_changedir(args[1], cwd);
-					chdir(var);
-					ft_strdel(&var);
+					if (cwd)
+					{
+						var = ft_changedir(args[1], cwd);
+						chdir(var);
+						ft_strdel(&var);
+					}
 				}
 			}
 		}
 		ft_env_owd(cwd, envp);
-		ft_env_cwd(envp);
+		str = ft_env_cwd(envp);
 	}
 }
 

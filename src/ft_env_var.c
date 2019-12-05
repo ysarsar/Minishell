@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 02:03:50 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/26 04:49:54 by root             ###   ########.fr       */
+/*   Updated: 2019/12/05 20:19:17 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void    ft_env_owd(char *cwd, t_env *envp)
         current = current->next;
     }
     var = ft_strjoin("OLDPWD=", cwd);
+    ft_strdel(&current->data);
     current->data = var;
 }
-void    ft_env_cwd(t_env *envp)
+
+char    *ft_env_cwd(t_env *envp)
 {
     t_env   *current;
-    char    *var;
     char    buff[PATH_MAX +1];
     char    *cwd;
 
@@ -42,7 +43,9 @@ void    ft_env_cwd(t_env *envp)
         current = current->next;
     }
     cwd = getcwd(buff, PATH_MAX + 1);
+    ft_strdel(&current->data);
     current->data = ft_strjoin("PWD=", cwd);
+    return (current->data);
 }
 
 void    ft_prompt()
@@ -51,6 +54,8 @@ void    ft_prompt()
     char    buff[PATH_MAX];
 
     cwd = getcwd(buff, PATH_MAX + 1);
+    if (cwd == NULL)
+        exit(1);
     ft_putstr("\033[1;36m");
     ft_putchar('[');
     ft_putstr(cwd);

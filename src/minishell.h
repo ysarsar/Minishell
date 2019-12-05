@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:01:12 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/26 04:16:24 by root             ###   ########.fr       */
+/*   Updated: 2019/12/05 21:31:36 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int     ft_datalen(char *data);
 void    listpush(char *var, t_env **envp);
 void    delete_var(t_env *envp, char *arg);
 void	ft_unsetenv(t_env *envp, char **args);
-void	free_args(char **args);
+void	free_args(char **tab);
 int     file_check(char **args, t_env *envp, int set);
 void    msh_lunche(char *path, char **args, char **tab);
 char	*ft_search_env(char *str, t_env *envp);
 void	ft_cd(char **args, char *home, t_env *envp);
 void    ft_env_owd(char *cwd, t_env *envp);
-void    ft_env_cwd(t_env *envp);
+char    *ft_env_cwd(t_env *envp);
 char	*ft_changedir(char *str, char *cwd);
 char    **ft_expantions(char **args, t_env *envp);
 char    *ft_var_name(char *str);
@@ -64,5 +64,13 @@ int     is_special(char c);
 char    *ft_change_arg(char *key, char *str, char *var);
 void	ft_echo(char **args);
 void    ft_prompt();
+char    **env_to_tab(char **env);
 
+
+
+
+
+
+
+void    delete_lst(t_env **head);
 #endif

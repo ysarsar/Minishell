@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:44:58 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/26 05:26:40 by root             ###   ########.fr       */
+/*   Updated: 2019/11/30 05:44:02 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ char	*msh_split(char *str)
 		if (i == -1)
 		{
 			ft_strdel(&s);
+			free(str);
 			return (NULL);
 		}
 		i++;
 	}
+	free(str);
 	return (s);
 }
 
@@ -65,7 +67,10 @@ char	*trim_arr(char *str)
 
 	arr = str;
 	if (arr[0] == '\"' || arr[0] == '\'')
+	{
 		arr = ft_strtrim(arr, arr[0]);
+		free(str);
+	}
 	return (arr);
 }
 

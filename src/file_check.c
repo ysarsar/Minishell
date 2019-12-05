@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 19:16:25 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 03:39:06 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/05 21:32:25 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,30 @@ int     file_check(char **args, t_env *envp, int set)
         {
             str1 = ft_strjoin(path[i], "/");
             str2 = ft_strjoin(str1, args[0]);
+            ft_strdel(&str1);
             if (set)
             {
                 if (access(str2, F_OK) == 0)
+                {
+                    ft_strdel(&str2);
+                    free_args(path);
                     return (1);
+                }
             }
             else
             {
                 if (access(str2, X_OK) == 0)
+                {
+                    ft_strdel(&str2);
+                    free_args(path);
                     return (1);
+                }
             }
+            ft_strdel(&str2);
             i++;
         }
     }
+    free_args(path);
     return (0);
 }
 
