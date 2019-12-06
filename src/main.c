@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:00:39 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/06 17:19:22 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/06 21:09:15 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,6 @@ void    free_list(t_env **head)
     }
     *head = NULL;
 }
-
-/*void    delete_lst(t_env **head)
-{
-    t_env *next;
-    t_env *curr;
-
-    next = NULL;
-    curr = *head;
-    while (curr)
-    {
-        next = curr->next;
-        free(curr);
-        curr = next;
-    }
-    *head = NULL;
-}*/
 
 int     main(int ac, char **av, char **env)
 {
