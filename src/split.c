@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:44:58 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/30 05:44:02 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/06 17:25:31 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ char	*msh_split(char *str)
 		if (i == -1)
 		{
 			ft_strdel(&s);
-			free(str);
+			//free(str);
 			return (NULL);
 		}
 		i++;
 	}
-	free(str);
+	//free(str);
 	return (s);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:00:39 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/05 21:33:36 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/06 17:19:22 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 void    free_list(t_env **head)
 {
-    t_env *list;
+    t_env *cur = *head;
     t_env *next;
-    list = *head;
-    while (list)
+
+    while (cur)
     {
-        ft_strdel(&list->data);
-        list = list->next;
+        next = cur->next;
+        free(cur->data);
+        free(cur);
+        cur = next;
     }
+    *head = NULL;
 }
 
-void    delete_lst(t_env **head)
+/*void    delete_lst(t_env **head)
 {
     t_env *next;
     t_env *curr;
@@ -37,7 +40,8 @@ void    delete_lst(t_env **head)
         free(curr);
         curr = next;
     }
-}
+    *head = NULL;
+}*/
 
 int     main(int ac, char **av, char **env)
 {
@@ -48,6 +52,7 @@ int     main(int ac, char **av, char **env)
     int     i;
 
     i = -1;
+    envp = NULL;
     if (env[0] != NULL)
     {
         tab = env_to_tab(env);
@@ -55,9 +60,8 @@ int     main(int ac, char **av, char **env)
         msh_loop(envp);
         free_list(&envp);
         while (tab[++i])
-            ft_strdel(&tab[i]);
+            free(tab[i]);
         free(tab);
-        delete_lst(&envp);
     }
     else
         ft_putendl("Minishell: environment not found!");
@@ -72,7 +76,7 @@ char    **env_to_tab(char **env)
     i = 0;
     while (env[i])
         i++;
-    if (!(tab = (char **)malloc(sizeof(char*) * i + 1)))
+    if (!(tab = (char **)malloc(sizeof(char*) * (i + 1))))
         return (NULL);
     i = -1;
     while (env[++i])
@@ -95,7 +99,7 @@ t_env   *my_getenv(char **env)
     i = 0;
     while (env[i] != NULL)
     {
-        envp->data = env[i];
+        envp->data = ft_strdup(env[i]);
         if (!env[i + 1])
             break ;
         if (!(envp->next = (t_env *)ft_memalloc(sizeof(t_env))))

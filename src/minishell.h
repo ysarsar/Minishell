@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:01:12 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/05 21:31:36 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/06 14:51:57 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ char    **env_to_tab(char **env);
 
 
 
-
+void		free_lst(t_list *valid);
 void    delete_lst(t_env **head);
 #endif

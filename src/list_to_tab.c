@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 21:35:02 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 03:17:35 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/06 17:25:29 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char    **list_to_tab(t_env *envp)
     current = envp;
     while (current != NULL)
     {
-        tab[i] = ft_strdup(current->data);
+        if (current->data)
+            tab[i] = ft_strdup(current->data);
         current = current->next;
         i++;
     }

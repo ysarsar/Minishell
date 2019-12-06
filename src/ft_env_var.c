@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 02:03:50 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/05 20:19:17 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/06 16:06:41 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    ft_env_owd(char *cwd, t_env *envp)
         current = current->next;
     }
     var = ft_strjoin("OLDPWD=", cwd);
-    ft_strdel(&current->data);
+    free(current->data);
     current->data = var;
 }
 
@@ -39,11 +39,11 @@ char    *ft_env_cwd(t_env *envp)
     while (current)
     {
         if (ft_strncmp("PWD=", current->data, ft_strlen("PWD=")) == 0)
-            break;
+            break ;
         current = current->next;
     }
     cwd = getcwd(buff, PATH_MAX + 1);
-    ft_strdel(&current->data);
+    free(current->data);
     current->data = ft_strjoin("PWD=", cwd);
     return (current->data);
 }
