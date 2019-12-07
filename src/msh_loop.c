@@ -6,12 +6,11 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:09:05 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/06 21:08:38 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 14:43:19 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int reg;
 
 void	free_args(char **args)
 {
@@ -22,7 +21,7 @@ void	free_args(char **args)
 		i = 0;
 		while (args[i])
 		{
-				ft_strdel(&args[i]);
+			ft_strdel(&args[i]);
 			i++;
 		}
 		free(args);
@@ -36,7 +35,7 @@ void	msh_loop(t_env *envp)
 	char	**tab;
 	int		status;
 
-	status = 1;	
+	status = 1;
 	while (status)
 	{
 		ft_prompt();

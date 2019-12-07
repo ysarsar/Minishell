@@ -6,31 +6,31 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 03:00:32 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/27 21:04:56 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 14:46:15 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    listpush(char *var, t_env **envp)
+void	listpush(char *var, t_env **envp)
 {
-    t_env   *new_node;
-    t_env   *last;
+	t_env	*new_node;
+	t_env	*last;
 
-    if (!(new_node = (t_env*)ft_memalloc(sizeof(t_env))))
-        exit(EXIT_FAILURE);
-    last = *envp;
-    new_node->data = ft_strdup(var);
-    new_node->next = NULL;
-    if (*envp == NULL)
-    {
-        *envp = new_node;
-        return ;
-    }
-    while (last->next != NULL)
-    {
-        last = last->next;
-    }
-    last->next = new_node;
-    return ;
+	if (!(new_node = (t_env*)ft_memalloc(sizeof(t_env))))
+		exit(EXIT_FAILURE);
+	last = *envp;
+	new_node->data = ft_strdup(var);
+	new_node->next = NULL;
+	if (*envp == NULL)
+	{
+		*envp = new_node;
+		return ;
+	}
+	while (last->next != NULL)
+	{
+		last = last->next;
+	}
+	last->next = new_node;
+	return ;
 }

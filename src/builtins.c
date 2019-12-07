@@ -6,13 +6,13 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:47:55 by root              #+#    #+#             */
-/*   Updated: 2019/12/06 17:26:03 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 12:47:12 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_env *envp, char *path, int c)
+int		ft_env(t_env *envp, char *path, int c)
 {
 	t_env *current;
 
@@ -27,6 +27,7 @@ void	ft_env(t_env *envp, char *path, int c)
 	}
 	else
 		ft_putendl("env: command not found.");
+	return (1);
 }
 
 void	ft_setenv(t_env *envp, char **args, char *path)
@@ -132,7 +133,7 @@ void	ft_cd(char **args, char *home, t_env *envp)
 	}
 }
 
-void	ft_echo(char **args)
+int	ft_echo(char **args)
 {
 	int		i;
 
@@ -145,4 +146,5 @@ void	ft_echo(char **args)
 		i++;
 	}
 	ft_putchar('\n');
+	return (1);
 }

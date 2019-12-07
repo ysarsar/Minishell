@@ -6,35 +6,35 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 21:35:02 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/06 17:25:29 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 14:45:00 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char    **list_to_tab(t_env *envp)
+char	**list_to_tab(t_env *envp)
 {
-    t_env   *current;
-    char    **tab;
-    int     i;
+	t_env	*current;
+	char	**tab;
+	int		i;
 
-    current = envp;
-    i = 0;
-    while (current != NULL)
-    {
-        current = current->next;
-        i++;
-    }
-    tab = (char **)ft_memalloc(sizeof(char*) * (i + 1));
-    i = 0;
-    current = envp;
-    while (current != NULL)
-    {
-        if (current->data)
-            tab[i] = ft_strdup(current->data);
-        current = current->next;
-        i++;
-    }
-    tab[i] = NULL;
-    return (tab);
+	current = envp;
+	i = 0;
+	while (current != NULL)
+	{
+		current = current->next;
+		i++;
+	}
+	tab = (char **)ft_memalloc(sizeof(char*) * (i + 1));
+	i = 0;
+	current = envp;
+	while (current != NULL)
+	{
+		if (current->data)
+			tab[i] = ft_strdup(current->data);
+		current = current->next;
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
 }

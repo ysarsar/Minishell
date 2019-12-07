@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 19:05:25 by oelazzou          #+#    #+#             */
-/*   Updated: 2019/12/06 14:37:56 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 14:48:10 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		get_next_line(const int fd, char **line)
 	return (1);
 }
 
-void		free_lst(t_list *valid)
+void	free_lst(t_list *valid)
 {
 	if (valid && valid->content)
 	{

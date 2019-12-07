@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 14:38:46 by oelazzou          #+#    #+#             */
-/*   Updated: 2019/11/22 15:51:56 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 12:18:12 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int					ft_is_there(char *s, char c);
 void				ft_memdel(void **ap);
 void				*ft_memalloc(size_t size);
 char				*ft_strnew(size_t size);
-void				ft_strdel(char **as);
+int					ft_strdel(char **as);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
