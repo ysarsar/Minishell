@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:44:58 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/07 14:49:11 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 19:00:43 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*space(char *str)
 	return (s);
 }
 
-char	**split_shell(char *str, t_env *envp)
+char	**split_shell(char *str, t_env **envp)
 {
 	char	*tmp;
 	char	**arr;

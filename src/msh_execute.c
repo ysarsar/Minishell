@@ -6,19 +6,19 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:41:39 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/07 12:47:44 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/09 12:21:31 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		msh_execute(char **args, t_env *envp, char **tab)
+int		msh_execute(char **args, t_env **env, char **tab)
 {
 	char	*path;
 	int		i;
 
-	path = valide_path(args, envp);
-	if ((i = check_builtins(args, envp, path)))
+	path = valide_path(args, env);
+	if ((i = check_builtins(args, env, path)))
 	{
 		if (i == 2)
 			return (ft_strdel(&path));
@@ -33,7 +33,7 @@ int		msh_execute(char **args, t_env *envp, char **tab)
 	}
 	else
 	{
-		execute_with_env(args, envp, tab);
+		execute_with_env(args, env, tab);
 		ft_strdel(&path);
 		return (1);
 	}
@@ -41,23 +41,22 @@ int		msh_execute(char **args, t_env *envp, char **tab)
 	return (1);
 }
 
-int		check_builtins(char **args, t_env *envp, char *path)
+int		check_builtins(char **args, t_env **env, char *path)
 {
 	char	*home;
+	t_env	*envp;
 
+	envp = *env;
 	home = ft_search_env("HOME", envp);
 	if (ft_strcmp(args[0], "exit") == 0)
 		return (2);
 	else if (ft_strcmp(args[0], "env") == 0)
-		return (ft_env(envp, path, 0));
+		return (ft_env(env, path, 0));
 	else if (ft_strcmp(args[0], "setenv") == 0)
-	{
-		ft_setenv(envp, args, path);
-		return (1);
-	}
+		return (ft_setenv(env, args, path));
 	else if (ft_strcmp(args[0], "unsetenv") == 0)
 	{
-		ft_unsetenv(envp, args);
+		ft_unsetenv(env, args);
 		return (1);
 	}
 	else if (ft_strcmp(args[0], "cd") == 0)

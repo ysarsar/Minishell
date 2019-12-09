@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 02:03:50 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/07 15:02:50 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/09 12:27:19 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,16 @@ void	ft_env_owd(char *cwd, t_env *envp)
 		current = current->next;
 	}
 	var = ft_strjoin("OLDPWD=", cwd);
-	free(current->data);
-	current->data = var;
+	if (current)
+	{
+		free(current->data);
+		current->data = var;
+	}
+	else
+		listpush("OLDPWD=", &envp);
 }
 
-char	*ft_env_cwd(t_env *envp)
+void	ft_env_cwd(t_env *envp)
 {
 	t_env	*current;
 	char	buff[PATH_MAX + 1];
@@ -43,9 +48,13 @@ char	*ft_env_cwd(t_env *envp)
 		current = current->next;
 	}
 	cwd = getcwd(buff, PATH_MAX + 1);
-	free(current->data);
-	current->data = ft_strjoin("PWD=", cwd);
-	return (current->data);
+	if (current)
+	{
+		free(current->data);
+		current->data = ft_strjoin("PWD=", cwd);
+	}
+	else
+		listpush("PWD=", &envp);
 }
 
 void	ft_prompt(void)
@@ -55,7 +64,7 @@ void	ft_prompt(void)
 
 	cwd = getcwd(buff, PATH_MAX + 1);
 	if (cwd == NULL)
-		exit(1);
+		exit(0);
 	ft_putstr("\033[1;36m");
 	ft_putchar('[');
 	ft_putstr(cwd);

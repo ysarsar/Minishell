@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 21:46:18 by root              #+#    #+#             */
-/*   Updated: 2019/12/07 15:42:26 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/09 12:26:03 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int		ft_datalen(char *data)
 	return (i - 1);
 }
 
-void	ft_modify_env(t_env *envp, char **args, int count)
+void	ft_modify_env(t_env **envp, char **args, int count)
 {
 	char	*var;
 	t_env	*current;
 	int		c;
 
-	current = envp;
+	current = *envp;
 	c = 0;
 	var = ft_strcat(args[1], "=");
 	if (count == 3)
@@ -59,32 +59,33 @@ void	ft_modify_env(t_env *envp, char **args, int count)
 		current = current->next;
 	}
 	if (c == 0)
-		listpush(var, &envp);
+		listpush(var, envp);
 }
 
-void	delete_var(t_env *envp, char *arg)
+int		delete_var(t_env **env, char *arg)
 {
 	t_env	*temp;
 	t_env	*prev;
+	t_env	*envp;
 
-	temp = envp;
-	if (temp != NULL && (ft_strncmp(temp->data, arg,
-		ft_datalen(temp->data) == 0)))
+	envp = *env;
+	temp = *env;
+	if (temp != NULL && (ft_strncmp(temp->data, arg, ft_strlen(arg)) == 0))
 	{
-		envp = temp->next;
+		*env = temp->next;
 		ft_strdel(&temp->data);
 		free(temp);
-		return ;
+		return (1);
 	}
-	while (temp != NULL && (ft_strncmp(temp->data, arg,
-			ft_datalen(temp->data)) != 0))
+	while (temp != NULL && (ft_strncmp(temp->data, arg, ft_strlen(arg)) != 0))
 	{
 		prev = temp;
 		temp = temp->next;
 	}
 	if (temp == NULL)
-		return ;
+		return (0);
 	prev->next = temp->next;
 	ft_strdel(&temp->data);
 	free(temp);
+	return (1);
 }

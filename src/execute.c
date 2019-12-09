@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 21:26:07 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/11/25 04:01:45 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/09 13:06:01 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	execute_without_env(char **args, char **tab)
 {
-	pid_t   pid;
-	pid_t   wpid;
+	pid_t	pid;
+	pid_t	wpid;
 
 	pid = fork();
 	if (pid == 0)
@@ -28,22 +28,16 @@ void	execute_without_env(char **args, char **tab)
 					ft_putendl("Minishel : Error exec.");
 			}
 			else
-			{
-				ft_putstr(args[0]);
-				ft_putendl(": Permission denied.");
-			}
+				exec_error(args[0], 1);
 		}
 		else
-		{
-			ft_putstr(args[0]);
-			ft_putendl(": Command not found.");
-		}
+			exec_error(args[0], 2);
 		exit(1);
 	}
 	else if (pid < 0)
 		ft_putendl("Minishell : Error forking.");
 	else
-		wpid = wait(NULL);   
+		wpid = wait(NULL);
 }
 
 void	error_msg(char *str)
@@ -52,7 +46,7 @@ void	error_msg(char *str)
 	ft_putendl(": command not found.");
 }
 
-void	execute_with_env(char **args, t_env *envp, char **tab)
+void	execute_with_env(char **args, t_env **envp, char **tab)
 {
 	char	*path;
 
@@ -75,21 +69,21 @@ void	execute_with_env(char **args, t_env *envp, char **tab)
 	ft_strdel(&path);
 }
 
-void    msh_lunche(char *path, char **args, char **tab)
+void	msh_lunche(char *path, char **args, char **tab)
 {
-    pid_t   pid;
-    pid_t   wpid;
-    int     status;
+	pid_t	pid;
+	pid_t	wpid;
+	int		status;
 
-    pid = fork();
-    if (pid == 0)
-    {
-        if (execve(path, args, tab) == -1)
-            ft_putendl("Minishell: error exec");
-        exit(EXIT_FAILURE);
-    }
-    else if (pid < 0)
-        ft_putendl("Minishell: error forking");
-    else
-        wpid = wait(NULL);
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve(path, args, tab) == -1)
+			ft_putendl("Minishell: error exec");
+		exit(EXIT_FAILURE);
+	}
+	else if (pid < 0)
+		ft_putendl("Minishell: error forking");
+	else
+		wpid = wait(NULL);
 }

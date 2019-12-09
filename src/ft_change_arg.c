@@ -6,13 +6,13 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:31:42 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/07 15:05:48 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 19:00:06 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_expantions(char **args, t_env *envp)
+char	**ft_expantions(char **args, t_env **envp)
 {
 	int		i;
 	char	*var;
@@ -24,7 +24,7 @@ char	**ft_expantions(char **args, t_env *envp)
 	{
 		if (args[i][0] == '~' && !(ft_isalpha(args[i][1])))
 		{
-			key = ft_search_env("HOME", envp);
+			key = ft_search_env("HOME", *envp);
 			tmp = ft_strdup(args[i] + 1);
 			free(args[i]);
 			args[i] = ft_strjoin(key, tmp);
@@ -34,7 +34,7 @@ char	**ft_expantions(char **args, t_env *envp)
 		{
 			if ((var = ft_var_name(args[i])) == NULL)
 				break ;
-			key = ft_search_env(var, envp);
+			key = ft_search_env(var, *envp);
 			if (key == NULL)
 			{
 				ft_putstr(var);

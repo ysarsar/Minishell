@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:00:39 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/07 15:40:33 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/07 16:53:14 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		main(int ac, char **av, char **env)
 	{
 		tab = env_to_tab(env);
 		envp = my_getenv(tab);
-		msh_loop(envp);
+		msh_loop(&envp);
 		free_list(&envp);
 		while (tab[++i])
 			free(tab[i]);
