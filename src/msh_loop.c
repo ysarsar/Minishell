@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:09:05 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/07 19:01:40 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/10 17:31:03 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ void	msh_loop(t_env **envp)
 				tab = list_to_tab(envp);
 				status = msh_execute(args, envp, tab);
 				free_args(tab);
-				free(line);
 			}
-			free_args(args);
 		}
+		ft_strdel(&line);
+		free_args(args);
 	}
+	free(line);
 }
 
 char	*msh_read_line(void)
