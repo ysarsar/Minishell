@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 14:38:46 by oelazzou          #+#    #+#             */
-/*   Updated: 2019/12/10 21:24:48 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/10 21:48:49 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
 void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
-// int					count_chars(char *s, char *sep);
-// int					count_parts(char *s, char *sep);
 char				**ft_strtok(char *s, char *sep);
 typedef struct		s_list
 {
