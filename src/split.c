@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:44:58 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/07 19:00:43 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/10 23:01:50 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ char	**split_shell(char *str, t_env **envp)
 	char	*tmp;
 	char	**arr;
 	int		i;
+	char	**tab;
 
 	i = -1;
 	if (!(tmp = msh_split(str)))
@@ -105,7 +106,12 @@ char	**split_shell(char *str, t_env **envp)
 	i = -1;
 	while (arr[++i])
 		arr[i] = space(arr[i]);
-	arr = ft_expantions(arr, envp);
+	tab = ft_expantions(arr, envp);
 	free(tmp);
-	return (arr);
+	if (tab == NULL)
+	{
+		free_args(arr);
+		return (NULL);
+	}
+	return (tab);
 }
