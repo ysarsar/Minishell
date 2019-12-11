@@ -6,7 +6,7 @@
 #    By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 16:17:49 by ysarsar           #+#    #+#              #
-#    Updated: 2019/12/10 16:30:23 by ysarsar          ###   ########.fr        #
+#    Updated: 2019/12/10 23:25:50 by ysarsar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_NAME =	builtins.c \
 			msh_loop.c \
 			print_error.c \
 			split.c \
+			ft_cd_c.c \
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_NAME))
 OBJS = $(addprefix $(OBJ_DIR), $(SRC_NAME:.c=.o))

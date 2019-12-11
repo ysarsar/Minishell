@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:47:55 by root              #+#    #+#             */
-/*   Updated: 2019/12/09 12:55:34 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/11 00:42:29 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_unsetenv(t_env **envp, char **args)
 		ft_putendl("unsetenv: Too few arguments.");
 }
 
-void	ft_cd(char **args, char *home, t_env *envp)
+int		ft_cd(char **args, char *home, t_env *envp)
 {
 	int		i;
 	char	*var;
@@ -86,40 +86,10 @@ void	ft_cd(char **args, char *home, t_env *envp)
 		ft_putendl("cd: Too many arguments.");
 	else
 	{
-		if (i == 1)
-			chdir(home);
-		else if (i == 2)
-		{
-			if (ft_strcmp(args[1], "-") == 0)
-			{
-				var = ft_search_env("OLDPWD", envp);
-				chdir(var);
-				ft_env_owd(cwd, envp);
-				ft_env_cwd(envp);
-				return ;
-			}
-			else
-			{
-				if (args[1][0] == '/')
-				{
-					chdir(args[1]);
-					ft_env_owd(cwd, envp);
-					ft_env_cwd(envp);
-					return ;
-				}
-				else
-				{
-					if (cwd)
-					{
-						var = ft_changedir(args[1], cwd);
-						chdir(var);
-						ft_strdel(&var);
-					}
-				}
-			}
-		}
+		ft_cd_glob(i, home, args, envp, var);
 		ft_env_owd(cwd, envp);
 		ft_env_cwd(envp);
+		return (1);
 	}
 }
 

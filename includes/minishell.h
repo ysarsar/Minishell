@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:01:12 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/10 17:13:59 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/11 00:00:44 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				free_args(char **tab);
 int					file_check(char **args, t_env **envp, int set);
 void				msh_lunche(char *path, char **args, char **tab);
 char				*ft_search_env(char *str, t_env *envp);
-void				ft_cd(char **args, char *home, t_env *envp);
+int					ft_cd(char **args, char *home, t_env *envp);
 void				ft_env_owd(char *cwd, t_env *envp);
 void				ft_env_cwd(t_env *envp);
 char				*ft_changedir(char *str, char *cwd);
@@ -69,5 +69,9 @@ int     			print_error(int c);
 void				exec_error(char *str, int c);
 int					check_file(char **args, int set, char *path);
 void				free_lst(t_list **head);
+int	    			ft_cd_back(char *cwd, t_env *envp);
+int					ft_cd_dir(char *cwd, t_env *envp, char **args);
+void				ft_cd_int(char *var, char **args, char *cwd);
+int					ft_cd_glob(int i, char *home, char **args, t_env *envp, char *var);
 
 #endif
