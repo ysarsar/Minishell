@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:01:12 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/11 17:53:39 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/11 18:29:45 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int					ft_echo(char **args);
 void				ft_prompt();
 char				**env_to_tab(char **env);
 void				delete_lst(t_env **head);
-int     			print_error(int c);
+int					print_error(int c);
 void				exec_error(char *str, int c);
 int					check_file(char **args, int set, char *path);
 void				free_lst(t_list **head);
-int	    			ft_cd_back(char *cwd, t_env *envp);
+int					ft_cd_back(char *cwd, t_env *envp);
 int					ft_cd_dir(char *cwd, t_env *envp, char **args);
 void				ft_cd_int(char *var, char **args, char *cwd);
 int					ft_cd_glob(char *home, char **args, t_env *envp, char *var);
