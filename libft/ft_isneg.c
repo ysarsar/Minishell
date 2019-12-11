@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isneg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oelazzou <oelazzou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 23:34:12 by oelazzou          #+#    #+#             */
-/*   Updated: 2019/04/05 23:34:54 by oelazzou         ###   ########.fr       */
+/*   Created: 2019/12/11 18:15:23 by ysarsar           #+#    #+#             */
+/*   Updated: 2019/12/11 18:25:14 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int		ft_isneg(int n)
 {

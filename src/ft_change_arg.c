@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:31:42 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/10 23:01:04 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/11 17:54:34 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,24 @@ char	**ft_expantions(char **args, t_env **envp)
 	char	*key;
 	char	*tmp;
 
-	i = 0;
-	while (args[i])
+	i = -1;
+	while (args[++i])
 	{
 		if (args[i][0] == '~' && !(ft_isalpha(args[i][1])))
-		{
-			key = ft_search_env("HOME", *envp);
-			tmp = ft_strdup(args[i] + 1);
-			free(args[i]);
-			args[i] = ft_strjoin(key, tmp);
-			ft_strdel(&tmp);
-		}
+			change_home(envp, &args[i]);
 		if (ft_is_there(args[i], '$'))
 		{
 			if ((var = ft_var_name(args[i])) == NULL)
 				break ;
 			key = ft_search_env(var, *envp);
 			if (key == NULL)
-			{
-				ft_putstr(var);
-				ft_putendl(": Undefined variable.");
-				ft_strdel(&var);
-				return (NULL);
-			}
+				return (line_error(var));
 			tmp = ft_change_arg(key, args[i], var);
 			ft_strdel(&args[i]);
 			args[i] = ft_strdup(tmp);
 			ft_strdel(&tmp);
 			ft_strdel(&var);
 		}
-		i++;
 	}
 	return (args);
 }

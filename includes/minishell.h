@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:01:12 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/11 00:00:44 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/11 17:53:39 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void				free_lst(t_list **head);
 int	    			ft_cd_back(char *cwd, t_env *envp);
 int					ft_cd_dir(char *cwd, t_env *envp, char **args);
 void				ft_cd_int(char *var, char **args, char *cwd);
-int					ft_cd_glob(int i, char *home, char **args, t_env *envp, char *var);
+int					ft_cd_glob(char *home, char **args, t_env *envp, char *var);
+void				change_home(t_env **envp, char **arg);
+char				**line_error(char *str);
 
 #endif

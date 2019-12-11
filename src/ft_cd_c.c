@@ -6,15 +6,15 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 23:14:49 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/11 00:43:34 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/11 16:34:04 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int     ft_cd_back(char *cwd, t_env *envp)
+int		ft_cd_back(char *cwd, t_env *envp)
 {
-	char    *var;
+	char	*var;
 
 	var = ft_search_env("OLDPWD", envp);
 	chdir(var);
@@ -38,12 +38,14 @@ void	ft_cd_int(char *var, char **args, char *cwd)
 	ft_strdel(&var);
 }
 
-int		ft_cd_glob(int i, char *home, char **args, t_env *envp, char *var)
+int		ft_cd_glob(char *home, char **args, t_env *envp, char *var)
 {
 	char	*cwd;
 	char	buff[PATH_MAX + 1];
+	int		i;
 
 	cwd = getcwd(buff, PATH_MAX + 1);
+	i = ft_argslen(args);
 	if (i == 1)
 		chdir(home);
 	else if (i == 2)
@@ -61,4 +63,5 @@ int		ft_cd_glob(int i, char *home, char **args, t_env *envp, char *var)
 			}
 		}
 	}
+	return (1);
 }
