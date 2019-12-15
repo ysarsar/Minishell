@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:01:12 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/11 18:29:45 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/12 20:22:20 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void				ft_cd_int(char *var, char **args, char *cwd);
 int					ft_cd_glob(char *home, char **args, t_env *envp, char *var);
 void				change_home(t_env **envp, char **arg);
 char				**line_error(char *str);
+void				my_func(int seg);
 
 #endif

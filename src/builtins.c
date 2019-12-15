@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:47:55 by root              #+#    #+#             */
-/*   Updated: 2019/12/11 16:30:58 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/12 20:41:04 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		ft_cd(char **args, char *home, t_env *envp)
 		ft_env_cwd(envp);
 		return (1);
 	}
+	return (1);
 }
 
 int		ft_echo(char **args)

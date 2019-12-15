@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:00:39 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/11 18:26:45 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/15 11:36:02 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		main(int ac, char **av, char **env)
 	(void)av;
 	i = -1;
 	envp = NULL;
+	signal(SIGINT, my_func);
 	if (env[0] != NULL)
 	{
 		tab = env_to_tab(env);

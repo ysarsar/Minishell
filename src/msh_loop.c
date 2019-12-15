@@ -6,11 +6,13 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:09:05 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/11 22:36:12 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/15 12:20:47 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	g_reg;
 
 void	free_args(char **args)
 {
@@ -28,6 +30,14 @@ void	free_args(char **args)
 	}
 }
 
+void	my_func(int seg)
+{
+	ft_putchar('\n');
+	if (g_reg != 1)
+		ft_prompt();
+	g_reg = -1;
+}
+
 void	msh_loop(t_env **envp)
 {
 	char	*line;
@@ -38,21 +48,23 @@ void	msh_loop(t_env **envp)
 	status = 1;
 	while (status)
 	{
-		ft_prompt();
+		g_reg = 0;
+		if (g_reg == 0)
+			ft_prompt();
 		if ((line = msh_read_line()) != NULL && line[0] != '\0')
 		{
 			args = split_shell(line, envp);
 			if (args != NULL && args[0] != NULL)
 			{
 				tab = list_to_tab(envp);
+				g_reg = 1;
 				status = msh_execute(args, envp, tab);
 				free_args(tab);
 				free_args(args);
 			}
+			ft_strdel(&line);
 		}
-		ft_strdel(&line);
 	}
-	free(line);
 }
 
 char	*msh_read_line(void)
