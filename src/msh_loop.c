@@ -6,7 +6,7 @@
 /*   By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:09:05 by ysarsar           #+#    #+#             */
-/*   Updated: 2019/12/15 12:20:47 by ysarsar          ###   ########.fr       */
+/*   Updated: 2019/12/24 19:46:42 by ysarsar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	msh_loop(t_env **envp)
 			ft_prompt();
 		if ((line = msh_read_line()) != NULL && line[0] != '\0')
 		{
-			args = split_shell(line, envp);
-			if (args != NULL && args[0] != NULL)
+			if ((args = split_shell(line, envp)) != NULL && args[0] != NULL)
 			{
 				tab = list_to_tab(envp);
 				g_reg = 1;
@@ -64,6 +63,7 @@ void	msh_loop(t_env **envp)
 			}
 			ft_strdel(&line);
 		}
+		free(line);
 	}
 }
 
@@ -77,6 +77,5 @@ char	*msh_read_line(void)
 	status = get_next_line(1, &line);
 	if (status == 1)
 		return (line);
-	else
-		return ("");
+	return (NULL);
 }

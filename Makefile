@@ -6,11 +6,11 @@
 #    By: ysarsar <ysarsar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/10 16:17:49 by ysarsar           #+#    #+#              #
-#    Updated: 2019/12/10 23:25:50 by ysarsar          ###   ########.fr        #
+#    Updated: 2019/12/24 19:46:28 by ysarsar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Minishell
+NAME = minishell
 LIBFT_PATH = libft/
 INC = -I ./includes/ -I $(LIBFT_PATH)
 SRC_DIR = src/
@@ -50,4 +50,5 @@ clean:
 fclean:
 		@make clean -C $(LIBFT_PATH)
 		@rm -f $(NAME)
+		@rm -rf obj/ minishell.dSYM/
 re: fclean all
